@@ -1,0 +1,5 @@
+package org.comstudy.saram.controller.action;
+
+public interface Action {
+	public void execute(String action);
+}

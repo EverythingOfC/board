@@ -1,0 +1,162 @@
+package org.comstudy.saram.model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.comstudy.saram.dbcp.JdbcUtil;
+
+public class ProductDAO {
+
+	private static ProductDAO productDAO = new ProductDAO(); // 싱글톤 객체
+	final String select_all = "select * from product";
+	final String select_one = "select * from product where code = ?";
+	final String insert = "insert into product values(pro_seq.nextval,?,?,?,?,?)";
+	final String update = "update product set name = ?, price = ? , pictureurl = ?, description = ? where code = ?";
+	final String delete = "delete from product where code = ?";
+	final String delete_all = "delete from product";
+
+	Connection conn;
+	ResultSet rs;
+	PreparedStatement pstmt;
+
+	private ProductDAO() { // 외부에서 객체를 생성할 수 없게 함.
+		
+	};
+
+	public static ProductDAO getInstance() {
+		return productDAO;
+	}
+
+	public List<ProductDTO> selectAll() { // 전체 조회
+		List<ProductDTO> list = new ArrayList<>();
+		try {
+			conn = JdbcUtil.getConnection();
+			pstmt = conn.prepareStatement(select_all);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				dto.setCode(rs.getInt("code"));
+				dto.setName(rs.getString("name"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setPictureurl(rs.getString("pictureurl"));
+				dto.setDescription(rs.getString("description"));
+				dto.setM_id(rs.getString("m_id"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(conn);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+		
+		return list;
+	}
+
+	public ProductDTO selectOne(int code) { // 상세 조회
+		
+		ProductDTO dto = new ProductDTO();
+		
+		try {
+			conn = JdbcUtil.getConnection();
+			pstmt = conn.prepareStatement(select_one);
+			pstmt.setInt(1, code);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setCode(rs.getInt("code"));
+				dto.setName(rs.getString("name"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setPictureurl(rs.getString("pictureurl"));
+				dto.setDescription(rs.getString("description"));
+				dto.setM_id(rs.getString("m_id"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(conn);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+		
+		return dto;
+	}
+	
+	public void insert(ProductDTO dto,String m_id) {
+		
+		try {
+			conn = JdbcUtil.getConnection();
+			pstmt = conn.prepareStatement(insert);
+			pstmt.setString(2, dto.getName());
+			pstmt.setInt(3, dto.getPrice());
+			pstmt.setString(4, dto.getPictureurl());
+			pstmt.setString(5, dto.getDescription());
+			pstmt.setString(6, m_id);
+			
+			int cnt = pstmt.executeUpdate();
+			if(cnt > 0) {
+				conn.commit();
+			}else {
+				conn.rollback();
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(conn);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
+	public void update(ProductDTO dto) {
+		
+		try {
+			conn = JdbcUtil.getConnection();
+			pstmt = conn.prepareStatement(update);
+			pstmt.setString(1, dto.getName());
+			pstmt.setInt(2, dto.getPrice());
+			pstmt.setString(3, dto.getPictureurl());
+			pstmt.setString(4, dto.getDescription());
+			pstmt.setInt(5, dto.getCode());
+			pstmt.executeUpdate();
+			
+			int cnt = pstmt.executeUpdate();
+			if(cnt > 0) {
+				conn.commit();
+			}else {
+				conn.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(conn);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
+	public void delete(int code) {
+		
+		try {
+			conn = JdbcUtil.getConnection();
+			pstmt = conn.prepareStatement(delete);
+			pstmt.setInt(1, code);
+			pstmt.executeUpdate();
+			int cnt = pstmt.executeUpdate();
+			if(cnt > 0) {
+				conn.commit();
+			}else {
+				conn.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(conn);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
+}

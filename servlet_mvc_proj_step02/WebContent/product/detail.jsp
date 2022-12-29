@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="css/shopping.css">
+<title>홍길동 홈페이지</title>
+</head>
+<body>
+
+	<div id="wrap" align="center">
+		<h1>상품 조회 - 관리자 페이지</h1>
+		<table class="list">
+			<tr>
+				<th>상품명</th>
+				<td>${detailP.name }</td>
+			</tr>
+			<tr>
+				<th>가 격</th>
+				<td>${detailP.price }</td>
+			</tr>
+			<tr>
+				<th>사 진</th>
+				<td><img src="upload/${detailP.pictureurl}"></td>
+			</tr>
+			<tr>
+				<th>설 명</th>
+				<td>${detailP.description}</td>
+			</tr>
+			<tr>
+				<th>등록자 ID</th>
+				<td>${product.m_id }</td>
+			</tr>
+
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+package org.comstudy.saram.controller;
+
+public class ActionFactory {
+
+	private static ActionFactory action = new ActionFactory();
+	
+	private ActionFactory() {
+		
+	}
+	
+	public static void getInstance() {
+		return action;
+	}
+}

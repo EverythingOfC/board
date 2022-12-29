@@ -1,0 +1,25 @@
+package org.comstudy.saram.model;
+
+import java.util.List;
+
+public class SaramDAO {
+
+	private static SaramDAO saramDAO = new SaramDAO();	// 싱글톤 객체
+	private String select_all = "select * from saram";
+	private String select_one = "select * from saram where idx = ?";
+	private String insert = "insert into saram values(seq_saram.nextval,?,?,?)";
+	
+
+	private SaramDAO(){	// 외부에서 객체를 생성할 수 없게 함.
+		
+	};
+	
+	public static SaramDAO getInstance() {
+		return saramDAO;
+	}
+	
+	public List<SaramDTO> selectAll(){
+		
+		return null;
+	}
+}

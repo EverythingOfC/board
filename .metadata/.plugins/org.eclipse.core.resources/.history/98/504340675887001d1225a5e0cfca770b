@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+#wrap{
+	width:971px;
+	margin:0 auto;
+}
+h1{
+	color:green;
+}
+table{
+	width:100%;
+	border-collapse: collapse;	/* 겹치는 선은 한줄로 나타냄 */
+	font-size:12px;
+	line-height:24px;
+}

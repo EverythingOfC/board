@@ -1,0 +1,10 @@
+package org.comstudy.saram.model;
+
+public class MemberDTO {
+
+	private String m_id;
+	private String m_pw;
+	private int readCount;
+	private String m_name;
+	
+}

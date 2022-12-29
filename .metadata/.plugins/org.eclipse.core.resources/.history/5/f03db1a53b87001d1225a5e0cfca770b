@@ -1,0 +1,14 @@
+package org.comstudy.saram.model;
+
+public class SaramDAO {
+
+	private static saramDAO = getInstance();
+	
+	private SaramDAO(){
+	
+	};
+	
+	public static  SaramDAO getInstance() {
+		return saramDAO;
+	}
+}

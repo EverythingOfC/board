@@ -1,0 +1,15 @@
+package org.comstudy.saram.model;
+
+public class MemberDAO {
+
+	private static MemberDAO memberDAO = new MemberDAO();
+	final String login = "select * from member where m_id = ? , m_pw = ?";
+	final String signUp = "insert into member values(?,?,0,?)";
+	private MemberDAO() {
+		
+	}
+	
+	public static MemberDAO getInstance() {
+		return memberDAO;
+	}
+}

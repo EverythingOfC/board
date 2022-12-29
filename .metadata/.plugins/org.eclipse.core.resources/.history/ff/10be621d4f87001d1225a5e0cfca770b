@@ -1,0 +1,10 @@
+package org.comstudy.saram.model;
+
+public class ProductDTO {
+	private int code;
+	private String name;
+	private String price;
+	private String pictureurl;
+	private String description;
+	
+}

@@ -1,0 +1,9 @@
+package org.comstudy.saram.model;
+
+public class SaramDAO {
+
+	private static saramDAO = new SaramDAO();
+	
+	private SaramDAO();
+	
+}

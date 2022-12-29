@@ -1,0 +1,29 @@
+package org.comstudy.saram.controller.action;
+
+import java.io.IOException;
+import java.rmi.ServerException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.comstudy.saram.model.ProductDAO;
+import org.comstudy.saram.model.ProductDTO;
+
+public class SelectAllAction implements Action {
+
+	@Override
+	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServerException, IOException {
+		
+		String url = "/product/list.jsp";
+		List<ProductDTO> pDto = new ArrayList<>();
+		
+		ProductDAO pDao = ProductDAO.getInstance();
+		pDto = pDao.selectAll();
+		
+		req.setAttribute("productList", pDto);
+		
+	}
+
+}

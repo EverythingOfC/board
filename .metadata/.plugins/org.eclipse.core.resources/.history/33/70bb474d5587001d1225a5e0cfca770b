@@ -1,0 +1,14 @@
+package org.comstudy.saram.model;
+
+public class MemberDAO {
+
+	private static MemberDAO memberDAO = new MemberDAO();
+	
+	private MemberDAO() {
+		
+	}
+	
+	public static MemberDAO getInstance() {
+		return memberDAO;
+	}
+}

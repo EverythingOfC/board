@@ -1,0 +1,22 @@
+package org.comstudy.saram.model;
+
+import java.util.List;
+
+public class SaramDAO {
+
+	private static SaramDAO saramDAO = new SaramDAO();	// 싱글톤 객체 
+
+	private SaramDAO(){	// 외부에서 객체를 생성할 수 없게 함.
+		
+	};
+	
+	public static SaramDAO getInstance() {
+		static final a = 3;
+		return saramDAO;
+	}
+	
+	public List<SaramDTO> selectAll(){
+		
+		return null;
+	}
+}

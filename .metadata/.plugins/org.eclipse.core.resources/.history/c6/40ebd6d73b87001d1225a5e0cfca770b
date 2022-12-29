@@ -1,0 +1,20 @@
+package org.comstudy.saram.model;
+
+import java.util.List;
+
+public class SaramDAO {
+
+	private static saramDAO = new SaramDAO(); 
+	
+	private SaramDAO(){
+		saramDAO.getInstance();
+	};
+	
+	public static SaramDAO getInstance() {
+		return saramDAO;
+	}
+	
+	public List<SaramDTO> selectAll(){
+		return null;
+	}
+}

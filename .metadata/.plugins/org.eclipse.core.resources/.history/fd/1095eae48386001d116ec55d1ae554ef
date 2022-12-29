@@ -1,0 +1,30 @@
+package servlet_mvc_proj;
+
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class JdbcUtil {	// Oracle Database에 접근하기 위한 클래스
+	
+	public static void main(String[] args) {
+	
+		try {
+			String url = "jdbc:oracle:thin:192.168.56.101:1521/XE";
+			String user = "comstudy";
+			String password = "comstudy";
+			
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection conn = DriverManager.getConnection(url,user,password);
+			System.out.println("검색 성공!");
+		} catch (ClassNotFoundException e) {
+			System.out.println("검색 실패!");
+			e.printStackTrace();
+		}catch(SQLException e) {
+			System.out.println("접속 실패!");
+			e.printStackTrace();
+		}
+		
+	}
+
+}

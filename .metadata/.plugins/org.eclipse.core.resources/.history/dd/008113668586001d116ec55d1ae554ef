@@ -1,0 +1,64 @@
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class JdbcUtil {	// Oracle Database에 접근하기 위한 클래스
+	
+	public static Connection getConnection(){
+	
+		Connection conn = null;
+		try {			
+			String url = "jdbc:oracle:thin:@192.168.56.101:1521/XE";
+			String user = "comstudy";
+			String password = "comstudy";
+			
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			System.out.println("검색 성공!");
+			conn = DriverManager.getConnection(url,user,password);
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("JdbcUtil 오류: 검색 실패!");
+			e.printStackTrace();
+		}catch(SQLException e) {
+			System.out.println("JdbcUtil 오류: 접속 실패!");
+			e.printStackTrace();
+		}
+		
+		return conn;
+	}
+	
+	public static void close(Connection conn,Statement stmt,ResultSet rs) {	// rs가 있을 때
+		
+		try {
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	public static void close(Connection conn,Statement stmt) {	// rs가 없을 때
+		
+		try {
+			stmt.close();
+			conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		Connection conn = getConnection();
+		System.out.println(conn);
+	}
+	
+	
+
+}

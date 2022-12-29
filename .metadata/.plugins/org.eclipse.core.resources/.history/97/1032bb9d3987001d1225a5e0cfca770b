@@ -1,0 +1,34 @@
+package org.comstudy.saram.controller;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet({"/home.do"})
+public class DispatcherServlet extends HttpServlet{	// Front Controller ( 클라이언트의 요청 시 제일 먼저 호출된다. ) 
+
+	protected void doProcess(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException{
+		
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		req.setAttribute("user", "sungjune");
+		req.setAttribute("message", "공부 열심히 하자");
+		String viewName = "views/home.jsp";
+		RequestDispatcher view = req.getRequestDispatcher(viewName);
+		view.forward(req, resp);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			// TODO Auto-generated method stub
+		doGet(req, resp);
+	}
+}

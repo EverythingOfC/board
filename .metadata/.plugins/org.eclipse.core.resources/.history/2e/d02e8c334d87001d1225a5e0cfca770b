@@ -1,0 +1,166 @@
+package org.comstudy.saram.model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.comstudy.saram.dbcp.JdbcUtil;
+
+public class ProductDAO {
+
+	private static ProductDAO saramDAO = new ProductDAO(); // 싱글톤 객체
+	final String select_all = "select * from saram";
+	final String select_one = "select * from saram where idx = ?";
+	final String insert = "insert into saram values(seq_saram.nextval,?,?,?)";
+	final String update = "update saram set idx = ?, id = ? , name = ?, email = ? where idx = ?";
+	final String delete = "delete from saram where idx = ?";
+	final String delete_all = "delete from saram";
+
+	Connection conn = JdbcUtil.getConnection();
+	ResultSet rs;
+	PreparedStatement pstmt;
+
+	private ProductDAO() { // 외부에서 객체를 생성할 수 없게 함.
+		
+	};
+
+	public static ProductDAO getInstance() {
+		return saramDAO;
+	}
+
+	public List<SaramDTO> selectAll() { // 전체 조회
+		List<SaramDTO> list = new ArrayList<>();
+		try {
+			conn = JdbcUtil.getConnection();
+			pstmt = conn.prepareStatement(select_all);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				SaramDTO dto = new SaramDTO();
+				dto.setIdx(rs.getInt("idx"));
+				dto.setId(rs.getString("id"));
+				dto.setName(rs.getString("name"));
+				dto.setEmail(rs.getString("email"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(conn);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+		
+		return list;
+	}
+
+	public SaramDTO selectOne(SaramDTO dTO) { // 상세 조회
+		
+		SaramDTO dto = new SaramDTO();
+		
+		try {
+			conn = JdbcUtil.getConnection();
+			pstmt = conn.prepareStatement(select_one);
+			pstmt.setInt(1, dTO.getIdx());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dto.setIdx(rs.getInt("idx"));
+				dto.setId(rs.getString("id"));
+				dto.setName(rs.getString("name"));
+				dto.setEmail(rs.getString("email"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(conn);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+		
+		return dto;
+	}
+	
+	public void insert(SaramDTO dto) {
+		
+		try {
+			conn = JdbcUtil.getConnection();
+			pstmt = conn.prepareStatement(insert);
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getName());
+			pstmt.setString(3, dto.getEmail());
+			int cnt = pstmt.executeUpdate();
+			if(cnt > 0) {
+				conn.commit();
+			}else {
+				conn.rollback();
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(conn);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
+	public void update(SaramDTO dto) {
+		
+		try {
+			conn = JdbcUtil.getConnection();
+			pstmt = conn.prepareStatement(update);
+			pstmt.setInt(1, dto.getIdx());
+			pstmt.setString(2, dto.getId());
+			pstmt.setString(3, dto.getName());
+			pstmt.setString(4, dto.getEmail());
+			pstmt.executeUpdate();
+			int cnt = pstmt.executeUpdate();
+			if(cnt > 0) {
+				conn.commit();
+			}else {
+				conn.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(conn);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
+	public void delete(SaramDTO dto) {
+		
+		try {
+			conn = JdbcUtil.getConnection();
+			pstmt = conn.prepareStatement(delete);
+			pstmt.setInt(1, dto.getIdx());
+			pstmt.executeUpdate();
+			int cnt = pstmt.executeUpdate();
+			if(cnt > 0) {
+				conn.commit();
+			}else {
+				conn.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(conn);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
+	public static void main(String[] args) {
+		SaramDTO dto = new SaramDTO(1,"tkflwk","서성준","tkflwk23@naver.com");
+		
+		saramDAO.insert(dto);
+		
+		List<SaramDTO> lDto = saramDAO.selectAll();
+	
+		for(SaramDTO sdto: lDto) {
+			System.out.println(sdto.getId());
+			System.out.println(sdto.getName());
+			System.out.println(sdto.getEmail());
+		}
+	}
+}

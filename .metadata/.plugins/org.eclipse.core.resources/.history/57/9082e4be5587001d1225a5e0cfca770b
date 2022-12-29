@@ -1,0 +1,21 @@
+package org.comstudy.saram.model;
+
+public class MemberDAO {
+
+	private static MemberDAO memberDAO = new MemberDAO();
+	final String login = "select * from member where m_id = ? , m_pw = ?";	// 로그인
+	final String signUp = "insert into member values(?,?,0,?)";	// 회원가입
+	final String update = "update member set m_pw = ?, readCount = ?, m_name=? where m_id = ?";
+	final String delete = "delete from member where m_id = ? ";
+	private MemberDAO() {
+		
+	}
+	
+	public static MemberDAO getInstance() {
+		return memberDAO;
+	}
+	
+	public Member memberLogin() {
+		
+	}
+}

@@ -1,0 +1,18 @@
+package org.comstudy.saram.dbcp;
+
+public class JdbcUtil {
+
+	public static void main(String[] args) {
+		
+		String url = "";
+	try {
+			Class.forName("oracle.jdbc.OracleDriver");
+			System.out.println("드라이버 검색 성공");
+		} catch (Exception e) {
+			System.out.println("드라이버 검색 실패");
+			e.printStackTrace();
+		}
+
+	}
+
+}

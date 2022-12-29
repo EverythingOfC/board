@@ -1,0 +1,7 @@
+
+12월 29, 2022 12:31:15.937 NEW SESSION
+12월 29, 2022 12:31:15.937 [18380:19452:1229/123115.924:ERROR:util.cc(133)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+12월 29, 2022 12:46:41.354 [21340:10880:1229/124641.353:ERROR:util.cc(133)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+12월 29, 2022 13:47:02.112 [21340:15676:1229/134702.112:ERROR:connection_factory_impl.cc(427)] Failed to connect to MCS endpoint with error -105
+12월 29, 2022 16:06:17.368 [21340:18900:1229/160617.367:ERROR:interface_endpoint_client.cc(694)] Message 1 rejected by interface blink.mojom.WidgetHost
+12월 29, 2022 17:03:33.963 [21340:18900:1229/170333.963:ERROR:interface_endpoint_client.cc(694)] Message 1 rejected by interface blink.mojom.WidgetHost

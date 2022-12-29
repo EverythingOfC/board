@@ -1,0 +1,39 @@
+package org.comstudy.saram.model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
+
+public class SaramDAO {
+
+	private static SaramDAO saramDAO = new SaramDAO();	// 싱글톤 객체
+	final String select_all = "select * from saram";
+	final String select_one = "select * from saram where idx = ?";
+	final String insert = "insert into saram values(seq_saram.nextval,?,?,?)";
+	final String update = "update saram set idx = ?, id = ? , name = ?, email = ? where idx = ?";
+	final String delete = "delete from saram where idx = ?";
+	final String delete_all = "delete from saram";
+	
+	Connection conn;
+	ResultSet rs;
+	PreparedStatement pstmt;
+	
+
+	private SaramDAO(){	// 외부에서 객체를 생성할 수 없게 함.
+		pstmt = conn.createStatement();
+	};
+	
+	public static SaramDAO getInstance() {
+		return saramDAO;
+	}
+	
+	public List<SaramDTO> selectAll(){	// 전체 조회
+		
+		return null;
+	}
+	
+	public SaramDTO selectOne() {	// 상세 조회
+		return null;
+	}
+}

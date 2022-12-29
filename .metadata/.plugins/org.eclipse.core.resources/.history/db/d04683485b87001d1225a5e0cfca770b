@@ -1,0 +1,16 @@
+package org.comstudy.saram.controller.action;
+
+import java.io.IOException;
+import java.rmi.ServerException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class SelectAllAction implements Action {
+
+	@Override
+	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServerException, IOException {
+		
+	}
+
+}

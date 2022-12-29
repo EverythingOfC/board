@@ -1,0 +1,12 @@
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="controller.ActionFactory"><rhs name\="controller.ActionFactory"/></lhs><lhs name\="javax.naming.Context"><rhs name\="javax.naming.InitialContext"/></lhs><lhs name\="dao.EmployeesDAO"><rhs name\="dao.EmployeesDAO"/></lhs><lhs name\="java.util.Collection"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.lang.Iterable"><rhs name\="java.util.ArrayList"/><rhs name\="java.sql.SQLException"/></lhs><lhs name\="java.util.List"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="dto.EmployeesDTO"><rhs name\="dto.EmployeesDTO"/></lhs><lhs name\="controller.action.Action"><rhs name\="controller.action.searchAction"/><rhs name\="controller.action.checkPassAction"/><rhs name\="controller.action.updateActionForm"/><rhs name\="controller.action.checkPassActionForm"/><rhs name\="controller.action.signUpAction"/><rhs name\="controller.action.FindAccountAction"/><rhs name\="controller.action.loginAction"/><rhs name\="controller.action.logoutAction"/><rhs name\="controller.action.signUpActionForm"/><rhs name\="controller.action.sortAction"/></lhs><lhs name\="java.util.Date"><rhs name\="java.sql.Timestamp"/></lhs><lhs name\="java.lang.Cloneable"><rhs name\="java.sql.Timestamp"/></lhs><lhs name\="java.sql.Timestamp"><rhs name\="java.sql.Timestamp"/></lhs><lhs name\="dto.Paging"><rhs name\="dto.Paging"/></lhs><lhs name\="java.lang.Exception"><rhs name\="java.sql.SQLException"/></lhs><lhs name\="java.lang.Throwable"><rhs name\="java.sql.SQLException"/></lhs><lhs name\="java.sql.SQLException"><rhs name\="java.sql.SQLException"/></lhs></history>
+content_assist_number_of_computers=17
+content_assist_proposals_background=255,255,255
+content_assist_proposals_foreground=0,0,0
+eclipse.preferences.version=1
+org.eclipse.jdt.internal.ui.navigator.layout=2
+org.eclipse.jdt.internal.ui.navigator.librariesnode=true
+org.eclipse.jdt.ui.formatterprofiles.version=22
+spelling_locale_initialized=true
+typefilter_migrated_2=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

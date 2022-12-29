@@ -1,0 +1,64 @@
+package com.saeyan.controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet({ "/UploadServlet", "/upload.do" })
+public class UploadServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public UploadServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(request,response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		PrintWriter out = response.getWriter();	// 서버가 클라이언트에 응답하기 위한 객체
+		
+		String savePath = "upload";	// 다운받는 경로
+		int uploadFileSizeLimit = 5*1024*1024;	// 최대 업로드 파일 크기 5MB로 제한한다. 1024byte = 1kb , 2번곱하면 1mb	
+		String encType = "utf-8";	// 인코딩 방식 지정
+		
+		ServletContext context = getServletContext();
+		String uploadFilePath = context.getRealPath(savePath);	// 서버의 실제 경로  ( 업로드 되는 파일의 경로 )
+		System.out.println(uploadFilePath);
+		
+		ServletContext = context = getServletContext();
+		
+		
+		
+		try {
+			
+		}catch(Exception e) {
+			System.out.println("예외 발생 : " + e);
+		}// catch
+	}
+
+}
